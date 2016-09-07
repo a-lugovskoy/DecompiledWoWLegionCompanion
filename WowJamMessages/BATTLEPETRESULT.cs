@@ -1,0 +1,26 @@
+using System;
+using System.Runtime.Serialization;
+
+namespace WowJamMessages
+{
+	[DataContract]
+	public enum BATTLEPETRESULT
+	{
+		[EnumMember]
+		BATTLEPETRESULT_OK = 0,
+		[EnumMember]
+		BATTLEPETRESULT_BAD_PARAM = 1,
+		[EnumMember]
+		BATTLEPETRESULT_DUPLICATE_CONVERTED_PET = 2,
+		[EnumMember]
+		BATTLEPETRESULT_CANT_HAVE_MORE_PETS_OF_THAT_TYPE = 3,
+		[EnumMember]
+		BATTLEPETRESULT_CANT_HAVE_MORE_PETS = 4,
+		[EnumMember]
+		BATTLEPETRESULT_CANT_INVALID_CHARACTER_GUID = 5,
+		[EnumMember]
+		BATTLEPETRESULT_UNCAPTURABLE = 6,
+		[EnumMember]
+		BATTLEPETRESULT_TOO_HIGH_LEVEL_TO_UNCAGE = 7
+	}
+}

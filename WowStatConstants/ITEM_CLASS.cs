@@ -1,0 +1,28 @@
+using System;
+
+namespace WowStatConstants
+{
+	public enum ITEM_CLASS
+	{
+		CONSUMABLE = 0,
+		CONTAINER = 1,
+		WEAPON = 2,
+		GEM = 3,
+		ARMOR = 4,
+		REAGENT = 5,
+		PROJECTILE = 6,
+		TRADEGOODS = 7,
+		ITEM_ENHANCEMENT = 8,
+		RECIPE = 9,
+		CURRENCY_TOKEN_OBSOLETE = 10,
+		QUIVER = 11,
+		QUESTITEM = 12,
+		KEY = 13,
+		PERMANENT_OBSOLETE = 14,
+		MISCELLANEOUS = 15,
+		GLYPH = 16,
+		BATTLEPET = 17,
+		WOW_TOKEN = 18,
+		NUM_ITEMCLASSES = 19
+	}
+}

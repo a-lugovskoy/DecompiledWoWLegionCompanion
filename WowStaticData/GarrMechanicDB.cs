@@ -1,0 +1,74 @@
+using System;
+using System.Collections;
+using UnityEngine;
+
+namespace WowStaticData
+{
+	public class GarrMechanicDB
+	{
+		private Hashtable m_records;
+
+		public GarrMechanicRec GetRecord(int id)
+		{
+			return (GarrMechanicRec)this.m_records.get_Item(id);
+		}
+
+		public void EnumRecords(Predicate<GarrMechanicRec> callback)
+		{
+			IEnumerator enumerator = this.m_records.get_Values().GetEnumerator();
+			try
+			{
+				while (enumerator.MoveNext())
+				{
+					GarrMechanicRec garrMechanicRec = (GarrMechanicRec)enumerator.get_Current();
+					if (!callback.Invoke(garrMechanicRec))
+					{
+						break;
+					}
+				}
+			}
+			finally
+			{
+				IDisposable disposable = enumerator as IDisposable;
+				if (disposable != null)
+				{
+					disposable.Dispose();
+				}
+			}
+		}
+
+		public bool Load(string path, AssetBundle nonLocalizedBundle, AssetBundle localizedBundle, string locale)
+		{
+			string text = path + "NonLocalized/GarrMechanic.txt";
+			if (this.m_records != null)
+			{
+				Debug.Log("Already loaded static db " + text);
+				return false;
+			}
+			TextAsset textAsset = nonLocalizedBundle.LoadAsset<TextAsset>(text);
+			if (textAsset == null)
+			{
+				Debug.Log("Unable to load static db " + text);
+				return false;
+			}
+			string text2 = textAsset.ToString();
+			this.m_records = new Hashtable();
+			int num = 0;
+			int num2;
+			do
+			{
+				num2 = text2.IndexOf('\n', num);
+				if (num2 >= 0)
+				{
+					string valueLine = text2.Substring(num, num2 - num + 1).Trim();
+					GarrMechanicRec garrMechanicRec = new GarrMechanicRec();
+					garrMechanicRec.Deserialize(valueLine);
+					this.m_records.Add(garrMechanicRec.ID, garrMechanicRec);
+					num = num2 + 1;
+				}
+			}
+			while (num2 > 0);
+			return true;
+		}
+	}
+}

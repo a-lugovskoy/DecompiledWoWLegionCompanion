@@ -1,0 +1,18 @@
+using System;
+
+namespace WowStatConstants
+{
+	public enum SHIPMENT_RESULT
+	{
+		SUCCESS = 0,
+		INVALID_SHIPMENT = 1,
+		SHIPMENT_NOT_READY = 2,
+		CONTAINER_FULL = 3,
+		SHIPMENTS_MAXED = 4,
+		NO_NPC = 5,
+		NPC_NOT_AVAILABLE = 6,
+		INTERNAL_ERROR = 7,
+		SHIPMENT_EMPTY = 8,
+		BAG_ERROR = 9
+	}
+}
